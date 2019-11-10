@@ -1,0 +1,22 @@
+﻿@page "/"
+@namespace BlazorAppWeb
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Blazor</title>
+    <link href="~/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
+    </div>
+
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="framework/blazor.server.js"></script>
+</body>
+</html>
