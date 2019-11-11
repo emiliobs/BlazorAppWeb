@@ -16,12 +16,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @foreach (var user in userList)
+                    {
+
+                        <tr>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Email</td>
+                            <td>@string.Format("{0:dd MMMM yyyy}", user.Date)</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -32,7 +36,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
-                <EditForm  Model="model" OnInvalidSubmit="@RegisterForm">
+                <EditForm  Model="@user" OnInvalidSubmit="@RegisterForm">
 
                     <div class="modal-header">
                         <h5 class="modal-title">Modal title</h5>
@@ -44,17 +48,17 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="InputEmail">Email</label>
-                            <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email">
+                            <input type="email" class="form-control" id="InputEmail" @bind-value="@user.Email" placeholder="Enter Email">
                         </div>
 
                         <div class="form-group">
                             <label for="InputFirstName">First Name</label>
-                            <input type="text" class="form-control" id="InputFirstName" placeholder="Enter First Name">
+                            <input type="text" class="form-control" id="InputFirstName" @bind-value="@user.FirstName" placeholder="Enter First Name">
                         </div>
 
                         <div class="form-group">
                             <label for="InputEmailLastName">Last Name</label>
-                            <input type="text" class="form-control" id="InputEmailLastName" placeholder="Enter Last Name">
+                            <input type="text" class="form-control" id="InputEmailLastName"  @bind-value="@user.LastName" placeholder="Enter Last Name">
                         </div>
 
                         <div class="form-group form-check">
@@ -77,9 +81,13 @@
 
 @code {
 
+    List<User> userList = new List<User>();
+
+    private User user = new User();
+
     private void RegisterForm()
     {
-        Console.WriteLine("");
+        Console.WriteLine(user);
     }
 
 }
